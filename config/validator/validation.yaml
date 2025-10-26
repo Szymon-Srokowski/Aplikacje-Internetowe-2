@@ -1,0 +1,46 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank: { message: 'City is required.', groups: [new, edit] }
+            - Length:   { min: 2, max: 255, groups: [new, edit] }
+
+        country:
+            - NotBlank: { message: 'Country is required.', groups: [new, edit] }
+            - Choice:
+                  choices: ['PL','DE','FR','ES','IT','GB','US']
+                  message: 'Allowed: PL, DE, FR, ES, IT, GB, US.'
+                  groups: [new, edit]
+
+        latitude:
+            - NotBlank: { message: 'Latitude is required.', groups: [new, edit] }
+            - Type:     { type: numeric, message: 'Latitude must be a number.', groups: [new, edit] }
+            - Range:
+                  min: -90
+                  max: 90
+                  notInRangeMessage: 'Latitude must be between -90 and 90.'
+                  groups: [new, edit]
+
+        longitude:
+            - NotBlank: { message: 'Longitude is required.', groups: [new, edit] }
+            - Type:     { type: numeric, message: 'Longitude must be a number.', groups: [new, edit] }
+            - Range:
+                  min: -180
+                  max: 180
+                  notInRangeMessage: 'Longitude must be between -180 and 180.'
+                  groups: [new, edit]
+
+
+App\Entity\Measurement:
+    properties:
+        date:
+            - NotBlank: { message: 'Date is required.', groups: [new, edit] }
+            - Type:     { type: DateTimeInterface, message: 'Invalid date.', groups: [new, edit] }
+
+        celsius:
+            - NotBlank: { message: 'Temperature is required.', groups: [new, edit] }
+            - Type:     { type: numeric, message: 'Temperature must be a number.', groups: [new, edit] }
+            - Range:
+                  min: -50
+                  max: 40
+                  notInRangeMessage: 'Temperature must be between -50 and 40.'
+                  groups: [new, edit]
