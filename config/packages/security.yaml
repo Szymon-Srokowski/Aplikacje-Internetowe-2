@@ -16,10 +16,16 @@ security:
         main:
             provider: app_user_provider
             lazy: true
+
             form_login:
                 login_path: app_login
                 check_path: app_login
+
+            login_throttling:
+                max_attempts: 2
+
             entry_point: form_login
+
             logout:
                 path: app_logout
                 target: /
